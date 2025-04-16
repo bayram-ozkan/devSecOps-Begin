@@ -1,7 +1,9 @@
 # DevSecOps Çalışma Notlarım (TR) 
 
 ## DevSecOps
-![image](https://github.com/user-attachments/assets/570e9dc5-0d19-435e-b3a6-0a8bdf71f7c5)
+![image](https://github.com/user-attachments/assets/0355cdf5-49ac-493f-9bf3-2876916d92b6)
+
+
 
 
 ##  Güvenli  Yazılım Geliştirme Yaşam Döngüsü 
