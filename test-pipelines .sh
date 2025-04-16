@@ -21,7 +21,8 @@ stage('OWASP Dependency-Check Vulnerabilities') {
     }        
 
 
-chatgpt
+# chatgpt
+
 pipeline {
     agent any
 
@@ -42,15 +43,15 @@ pipeline {
 
 
 
-
 pipeline {
     agent any
-    stages {
-        stage('GIT CLONE') {
+     stages {
+        stage('Git Checkout') {
             steps {
-                sh 'rm -rf repo'
-                sh 'git clone $GITHUB_REPO repo'
+                git changelog: false, poll: false, url: 'https://github.com/shubnimkar/CI_CD_Devsecops.git'
             }
+        }
+
 
         stage('OWASP Dependency-Check') {
             steps {
@@ -72,3 +73,12 @@ pipeline {
         }
     }
 }
+
+
+
+stage("OWASP Dependency Check"){
+            steps{
+                dependencyCheck additionalArguments: '--scan ./ ', odcInstallation: 'DP-Check'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml' 
+            }
+        }
