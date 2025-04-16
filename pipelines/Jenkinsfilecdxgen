@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    stages {
+        stage('GIT CLONE') {
+            steps {
+                sh 'rm -rf cdxgen'
+                sh 'git clone $GITHUB_REPO cdxgen'
+            }
+        }
+        stage('SCAN') {
+            steps {
+                sh 'cd cdxgen'
+                sh 'cdxgen -o bom.json'
+                sh 'cat bom.json'
+            }
+        }
+        stage('CLEAN'){
+            steps{
+                deleteDir()
+            }
+        }
+    }
+}

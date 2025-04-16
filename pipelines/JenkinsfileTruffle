@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    stages {
+        stage('GIT CLONE') {
+            steps {
+                sh 'rm -rf trufflehog'
+                sh 'git clone $GITHUB_REPO trufflehog'
+            }
+        }
+        stage('SCAN') {
+            steps {
+                sh 'cd trufflehog'
+                sh '/var/jenkins_home/.local/bin/trufflehog/trufflehog filesystem .'
+            }
+        }
+        stage('CLEAN'){
+            steps{
+                deleteDir()
+            }
+        }
+    }
+}

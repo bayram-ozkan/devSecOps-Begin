@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    stages {
+        stage('GIT CLONE') {
+            steps {
+                sh 'rm -rf repo'
+                sh 'git clone $GITHUB_REPO repo'
+            }
+        }
+        stage('SCAN') {
+            steps {
+                sh 'cd repo'
+                sh '/var/jenkins_home/.local/bin/semgrep scan --config=auto'
+            }
+        }
+        stage('CLEAN'){
+            steps{
+                deleteDir()
+            }
+        }
+    }
+}
